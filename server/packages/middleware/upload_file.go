@@ -22,7 +22,7 @@ func UploadImage(next echo.HandlerFunc) echo.HandlerFunc {
 			defer src.Close()
 		}
 
-		c.Set("fileImage", "")
+		c.Set("fileImage", fileImage)
 		return next(c)
 	}
 }
@@ -43,7 +43,7 @@ func UploadSong(next echo.HandlerFunc) echo.HandlerFunc {
 			defer src.Close()
 		}
 
-		c.Set("fileSong", "")
+		c.Set("fileSong", fileSong)
 		return next(c)
 	}
 }
