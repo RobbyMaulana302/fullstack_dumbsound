@@ -72,7 +72,7 @@ function AdminAddMusic() {
         </Alert>
       );
       setMessage(alert);
-      console.log("Add ticket failed : ", error);
+      console.log("Add Music Failed : ", error);
     }
   });
 

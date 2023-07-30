@@ -20,9 +20,11 @@ func UploadImage(next echo.HandlerFunc) echo.HandlerFunc {
 				return c.JSON(http.StatusBadRequest, err)
 			}
 			defer src.Close()
+			c.Set("fileSong", fileImage)
+
 		}
 
-		c.Set("fileImage", fileImage)
+		c.Set("fileImage", "")
 		return next(c)
 	}
 }
@@ -41,9 +43,12 @@ func UploadSong(next echo.HandlerFunc) echo.HandlerFunc {
 				return c.JSON(http.StatusBadRequest, err)
 			}
 			defer src.Close()
+
+			c.Set("fileSong", fileSong)
+
 		}
 
-		c.Set("fileSong", fileSong)
+		c.Set("fileSong", "")
 		return next(c)
 	}
 }
