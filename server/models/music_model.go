@@ -3,7 +3,7 @@ package models
 type Music struct {
 	ID        int    `json:"id" gorm:"primary_key:auto_increment"`
 	Title     string `json:"title" gorm:"type: varchar(255)"`
-	Year      string `json:"year" gorm:"type: year"`
+	Year      string `json:"year" gorm:"type: date"`
 	Thumbnail string `json:"thumbnail" gorm:"type: varchar(255)"`
 	Attache   string `json:"attache" gorm:"type: varchar(255)"`
 	ArtistID  int    `json:"artis_id" gorm:"type: int;  foreignKey:ArtistID"`
@@ -12,7 +12,7 @@ type Music struct {
 
 type MusicResponse struct {
 	Title     string `json:"title" gorm:"type: varchar(255)"`
-	Year      string `json:"year" gorm:"type: year"`
+	Year      string `json:"year" gorm:"type: date"`
 	Thumbnail string `json:"thumbnail" gorm:"type: varchar(255)"`
 	Attache   string `json:"attache" gorm:"type: varchar(255)"`
 	ArtistID  int    `json:"artis_id" gorm:"type: int;  foreignKey:ArtistID"`
