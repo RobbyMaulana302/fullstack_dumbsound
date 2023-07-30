@@ -72,7 +72,6 @@ function Playlist() {
         autoPlay
         src={song}
         onPlay={(e) => console.log("onPlay")}
-        // other props here
       />
       <Login show={showLogin} showLogin={setShowLogin}/>
       <ModalPayment show={showPayment} showPayment={setShowPayment}/>

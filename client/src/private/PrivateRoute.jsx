@@ -13,22 +13,21 @@ export function PrivateRouteLogin() {
 }
 
 export function PrivateRouteUser() {
-    const [state] = useContext(UserContext)
+    const [state,] = useContext(UserContext)
 
-    console.log(state.user.role);
+    console.log(state.user);
     if (state.user.role === "admin") {
-        return <Navigate to="/admin/list-transaction" />
+        return <Outlet /> 
     }
-
-    return <Outlet />
+    return <Navigate to="/admin/list-transaction" />
 }
 
 export function PrivateRouteAdmin() {
     const [state] = useContext(UserContext);
 
-    if (state.user.role !== "admin") {
-        return <Navigate to="/user" />
+    if (state.user.role !== "user") {
+        return <Outlet />
     }
     
-    return <Outlet />
+    return <Navigate to="/" />
 }

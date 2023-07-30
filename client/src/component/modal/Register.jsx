@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { API } from "../../config/Api";
 
 function Register({ show, showRegister }) {
   const [message, setMessage] = useState(null);
-  const [emailUser, setEmailUser] = useState([]);
   const [form, setForm] = useState({
     email: "",
     password: "",

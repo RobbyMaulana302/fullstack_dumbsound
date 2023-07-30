@@ -4,6 +4,7 @@ import (
 	"dumbsound/config"
 	"dumbsound/packages/database"
 	"dumbsound/routes"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -29,5 +30,7 @@ func main() {
 
 	routes.RouteInit(e.Group("dumbsound/api/v1"))
 
-	e.Logger.Fatal(e.Start(":5000"))
+	var PORT = os.Getenv("PORT")
+
+	e.Logger.Fatal(e.Start(":" + PORT))
 }

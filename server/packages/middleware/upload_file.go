@@ -1,8 +1,6 @@
 package middlewarepackage
 
 import (
-	"io"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -22,21 +20,6 @@ func UploadImage(next echo.HandlerFunc) echo.HandlerFunc {
 				return c.JSON(http.StatusBadRequest, err)
 			}
 			defer src.Close()
-
-			tempFile, err := ioutil.TempFile("uploads", "image-*.png")
-			if err != nil {
-				return c.JSON(http.StatusBadRequest, err)
-			}
-			defer tempFile.Close()
-
-			if _, err = io.Copy(tempFile, src); err != nil {
-				return c.JSON(http.StatusBadRequest, err)
-			}
-
-			data := tempFile.Name()
-
-			c.Set("fileImage", data)
-			return next(c)
 		}
 
 		c.Set("fileImage", "")
@@ -58,21 +41,6 @@ func UploadSong(next echo.HandlerFunc) echo.HandlerFunc {
 				return c.JSON(http.StatusBadRequest, err)
 			}
 			defer src.Close()
-
-			tempFile, err := ioutil.TempFile("uploads", "song-*.mp3")
-			if err != nil {
-				return c.JSON(http.StatusBadRequest, err)
-			}
-			defer tempFile.Close()
-
-			if _, err = io.Copy(tempFile, src); err != nil {
-				return c.JSON(http.StatusBadRequest, err)
-			}
-
-			data := tempFile.Name()
-
-			c.Set("fileSong", data)
-			return next(c)
 		}
 
 		c.Set("fileSong", "")

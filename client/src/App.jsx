@@ -11,7 +11,6 @@ import { UserContext } from "./context/UserContext";
 import { API, setAuthToken } from "./config/Api";
 import {
   PrivateRouteAdmin,
-  PrivateRouteLogin,
   PrivateRouteUser,
 } from "./private/PrivateRoute";
 
@@ -20,7 +19,6 @@ function App() {
 
   const [state, dispatch] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(null);
-
   useEffect(() => {
     if (!isLoading) {
       if (state.isLogin === false) {
@@ -67,20 +65,18 @@ function App() {
       <Header />
       {isLoading ? null : (
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route element={<PrivateRouteLogin />}>
-            <Route element={<PrivateRouteUser />}>
-              <Route path="/user" element={<LandingPage />} />
-              <Route path="/user/payment" element={<Payment />} />
-            </Route>
-            <Route element={<PrivateRouteAdmin />}>
-              <Route
-                path="/admin/list-transaction"
-                element={<AdminListTransaction />}
-              />
-              <Route path="/admin/add-music" element={<AdminAddMusic />} />
-              <Route path="/admin/add-artist" element={<AdminAddArtist />} />
-            </Route>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route element={<PrivateRouteUser />}>
+            <Route path="/user" element={<LandingPage />} />
+            <Route path="/user/payment" element={<Payment />} />
+          </Route>
+          <Route element={<PrivateRouteAdmin />}>
+            <Route
+              path="/admin/list-transaction"
+              element={<AdminListTransaction />}
+            />
+            <Route path="/admin/add-music" element={<AdminAddMusic />} />
+            <Route path="/admin/add-artist" element={<AdminAddArtist />} />
           </Route>
         </Routes>
       )}

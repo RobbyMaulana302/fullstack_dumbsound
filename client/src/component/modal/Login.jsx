@@ -2,11 +2,14 @@ import React, { useContext, useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { API, setAuthToken } from "../../config/Api";
 
 export default function Login({ show, showLogin }) {
   let navigate = useNavigate();
+  const handleClose = () => showLogin(false);
+
+
 
   const [_, dispatch] = useContext(UserContext);
 
@@ -68,7 +71,7 @@ export default function Login({ show, showLogin }) {
     <div>
       <Modal
         show={show}
-        onHide={showLogin}
+        onHide={handleClose}
         size="md"
         className="d-flex"
         centered
@@ -109,6 +112,7 @@ export default function Login({ show, showLogin }) {
                 border: "none",
               }}
               type="submit"
+              onClick={handleClose}
             >
               Login
             </Button>
