@@ -61,6 +61,9 @@ func UploadSong(next echo.HandlerFunc) echo.HandlerFunc {
 
 		cloudinary, _ := cloudinary.NewFromParams(CLOUDE_NAME, API_KEY, API_SECRET)
 		responseSong, err := cloudinary.Upload.Upload(ctx, fileSong, uploader.UploadParams{Folder: "dumbsound"})
+		if err != nil {
+			fmt.Println(err)
+		}
 
 		c.Set("fileSong", responseSong.SecureURL)
 		return next(c)
