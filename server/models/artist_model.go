@@ -5,7 +5,7 @@ type Artist struct {
 	Name        string `json:"name" gorm:"type: varchar(255)"`
 	Old         int    `json:"old" gorm:"type: int"`
 	Type        string `json:"type" gorm:"type: varchar(255)"`
-	StartCareer string `json:"startCareer" gorm:"type: YEAR"`
+	StartCareer string `json:"startCareer" gorm:"type: date"`
 }
 
 type ArtistResponse struct {
