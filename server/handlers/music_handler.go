@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"context"
 	musicdto "dumbsound/dto/music"
 	resultdto "dumbsound/dto/result"
 	"dumbsound/models"
@@ -11,8 +10,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/cloudinary/cloudinary-go/v2"
-	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
@@ -32,10 +29,7 @@ func HandlerMusic(MusicRepository repositories.MusicRepositiry) *handlerMusic {
 }
 
 func (h *handlerMusic) CreateMusic(c echo.Context) error {
-	var ctx = context.Background()
-	var CLOUDE_NAME = os.Getenv("CLOUD_NAME")
-	var API_KEY = os.Getenv("API_KEY")
-	var API_SECRET = os.Getenv("API_SECRET")
+
 	var err error
 
 	fileImage := c.Get("fileImage").(string)
@@ -46,20 +40,11 @@ func (h *handlerMusic) CreateMusic(c echo.Context) error {
 
 	artist_id, _ := strconv.Atoi(c.FormValue("artist_id"))
 
-	cloudinary, _ := cloudinary.NewFromParams(CLOUDE_NAME, API_KEY, API_SECRET)
-
-	responseImage, err := cloudinary.Upload.Upload(ctx, fileImage, uploader.UploadParams{Folder: "dumbsound"})
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	responseSong, err := cloudinary.Upload.Upload(ctx, fileSong, uploader.UploadParams{Folder: "dumbsound"})
-
 	request := musicdto.MusicRequest{
 		Title:     c.FormValue("title"),
 		Year:      c.FormValue("year"),
-		Thumbnail: responseImage.SecureURL,
-		Attache:   responseSong.SecureURL,
+		Thumbnail: fileImage,
+		Attache:   fileSong,
 		ArtistID:  artist_id,
 	}
 
