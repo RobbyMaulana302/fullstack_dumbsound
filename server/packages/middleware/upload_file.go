@@ -2,12 +2,11 @@ package middlewarepackage
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"os"
 
-	"github.com/cloudinary/cloudinary-go/api/uploader"
 	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/labstack/echo/v4"
 )
 
@@ -31,9 +30,9 @@ func UploadImage(next echo.HandlerFunc) echo.HandlerFunc {
 
 		cloudinary, _ := cloudinary.NewFromParams(CLOUDE_NAME, API_KEY, API_SECRET)
 
-		responseImage, err := cloudinary.Upload.Upload(ctx, fileImage, uploader.UploadParams{Folder: "dumbsound"})
+		responseImage, err := cloudinary.Upload.Upload(ctx, src, uploader.UploadParams{Folder: "dumbsound"})
 		if err != nil {
-			fmt.Println(err.Error())
+			return c.JSON(http.StatusInternalServerError, err)
 		}
 
 		c.Set("fileImage", responseImage.SecureURL)
@@ -60,9 +59,9 @@ func UploadSong(next echo.HandlerFunc) echo.HandlerFunc {
 		var API_SECRET = os.Getenv("API_SECRET")
 
 		cloudinary, _ := cloudinary.NewFromParams(CLOUDE_NAME, API_KEY, API_SECRET)
-		responseSong, err := cloudinary.Upload.Upload(ctx, fileSong, uploader.UploadParams{Folder: "dumbsound"})
+		responseSong, err := cloudinary.Upload.Upload(ctx, src, uploader.UploadParams{Folder: "dumbsound"})
 		if err != nil {
-			fmt.Println(err)
+			return c.JSON(http.StatusInternalServerError, err)
 		}
 
 		c.Set("fileSong", responseSong.SecureURL)
