@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/cloudinary/cloudinary-go"
 	"github.com/cloudinary/cloudinary-go/api/uploader"
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/labstack/echo/v4"
