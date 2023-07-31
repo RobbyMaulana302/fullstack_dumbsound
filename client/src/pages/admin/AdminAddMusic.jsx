@@ -84,7 +84,6 @@ function AdminAddMusic() {
           <div className="text-white">
             <h1 className="mb-5">Add Music</h1>
             {message && message}
-
             <Form onSubmit={(e) => handleSubmit.mutate(e)}>
               <Row>
                 <Col>
