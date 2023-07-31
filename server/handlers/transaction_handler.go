@@ -70,7 +70,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 	year := start_date.Year()
 
 	due_date := time.Date(year, month, day, 0, 0, 0, 0, time.UTC)
-	formatDateDueDate := start_date.Format("2006-01-02")
+	formatDateDueDate := due_date.Format("2006-01-02")
 
 	fmt.Println(due_date)
 	transaction := models.Transaction{
