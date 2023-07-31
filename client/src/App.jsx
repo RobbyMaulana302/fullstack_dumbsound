@@ -19,7 +19,7 @@ function App() {
   let navigate = useNavigate();
 
   const [state, dispatch] = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (!isLoading) {
       if (state.isLogin === false) {
