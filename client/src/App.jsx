@@ -20,22 +20,6 @@ function App() {
 
   const [state, dispatch] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    if (!isLoading) {
-      if (state.isLogin === false) {
-        navigate("/");
-      }
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-      checkUser();
-    } else {
-      setIsLoading(false);
-    }
-  }, []);
 
   const checkUser = async () => {
     try {
@@ -60,6 +44,28 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      checkUser();
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+  
+  
+  useEffect(() => {
+    if (!isLoading) {
+      if (state.isLogin === false) {
+        navigate("/");
+      }
+    }
+  }, [isLoading]);
+
+  
+
+  
 
   return (
     <>

@@ -6,7 +6,6 @@ import { Navigate, Outlet } from "react-router-dom";
 export function PrivateRouteUser() {
   const [state] = useContext(UserContext);
 
-  console.log(state.user);
   if (state.user.role === "admin") {
     return <Outlet />;
   }
