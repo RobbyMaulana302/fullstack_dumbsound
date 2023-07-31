@@ -40,7 +40,7 @@ export default function Login({ show, showLogin }) {
         payload: response.data.data.user,
       });
 
-      setAuthToken(localStorage.token);
+      setAuthToken(response.data.data.user.token);
 
       if (response.data.data.user.role === "admin") {
         navigate("/admin/list-transaction");
