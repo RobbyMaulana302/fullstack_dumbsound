@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { Navigate, Outlet } from "react-router-dom";
 
 
-export function PrivateRouteUser() {
+export function PrivateRouteAdmin() {
   const [state] = useContext(UserContext);
 
   if (state.user.role === "admin") {
@@ -12,7 +12,7 @@ export function PrivateRouteUser() {
   return <Navigate to="/" />;
 }
 
-export function PrivateRouteAdmin() {
+export function PrivateRouteUser() {
   const [state] = useContext(UserContext);
 
   if (state.user.role === "user") {
