@@ -67,7 +67,6 @@ function App() {
       {isLoading ? null : (
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route element={<PrivateRouteLogin />} >
           <Route element={<PrivateRouteUser />}>
             <Route path="/user" element={<LandingPage />} />
             <Route path="/user/payment" element={<Payment />} />
@@ -79,7 +78,6 @@ function App() {
             />
             <Route path="/admin/add-music" element={<AdminAddMusic />} />
             <Route path="/admin/add-artist" element={<AdminAddArtist />} />
-          </Route>
           </Route>
         </Routes>
       )}
