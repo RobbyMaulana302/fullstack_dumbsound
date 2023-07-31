@@ -63,28 +63,20 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 	}
 
 	start_date := time.Now()
-	start_date_request := start_date.String()
-	parseStartDate, _ := time.Parse("2006-01-02", start_date_request)
-	toStringParseStartDate := parseStartDate.String()
+	formatDateStartDate := start_date.Format("2006-01-02")
 
 	day := start_date.Day()
 	month := start_date.Month() + 1
 	year := start_date.Year()
-	fmt.Println(day)
-	fmt.Println(int(month))
-	fmt.Println(year)
 
 	due_date := time.Date(year, month, day, 0, 0, 0, 0, time.UTC)
-	parse_due_date, _ := time.Parse("2006-01-02", due_date.String())
-	due_date_request := parse_due_date.String()
-	fmt.Println(due_date)
-	fmt.Println(parse_due_date)
-	fmt.Println(due_date_request)
+	formatDateDueDate := start_date.Format("2006-01-02")
 
+	fmt.Println(due_date)
 	transaction := models.Transaction{
 		ID:        transactionID,
-		StartDate: toStringParseStartDate,
-		DueDate:   due_date.String(),
+		StartDate: formatDateStartDate,
+		DueDate:   formatDateDueDate,
 		Status:    request.Status,
 		Price:     59999,
 		UserID:    int(user_id),
